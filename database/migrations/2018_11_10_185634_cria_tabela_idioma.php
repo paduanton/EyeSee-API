@@ -14,8 +14,8 @@ class CriaTabelaIdioma extends Migration
     public function up()
     {
         Schema::create('idioma', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->BigIncrements('id');
+            $table->string('descricao');
         });
     }
 

@@ -14,7 +14,9 @@ class CriaTabelaAvaliacao extends Migration
     public function up()
     {
         Schema::create('avaliacao', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
+            $table->string('descricao');
+            $table->tinyInteger('nota');
             $table->timestamps();
         });
     }

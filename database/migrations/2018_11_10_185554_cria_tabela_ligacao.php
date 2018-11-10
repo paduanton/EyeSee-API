@@ -14,8 +14,7 @@ class CriaTabelaLigacao extends Migration
     public function up()
     {
         Schema::create('ligacao', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+            $table->BigIncrements('id');
         });
     }
 
