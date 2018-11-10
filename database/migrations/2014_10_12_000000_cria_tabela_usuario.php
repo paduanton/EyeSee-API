@@ -16,11 +16,11 @@ class CriaTabelaUsuario extends Migration
         Schema::create('usuario', function (Blueprint $table) {
             $table->BigIncrements('id');
             $table->string('nome');
-//            $table->string('sobrenome');
+            $table->string('sobrenome');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-//            $table->boolean('deficiente');
+            $table->boolean('deficiente')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

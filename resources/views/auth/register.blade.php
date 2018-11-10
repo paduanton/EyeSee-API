@@ -26,6 +26,20 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="sobrenome" class="col-md-4 col-form-label text-md-right">{{ __('Sobrenome') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="sobrenome" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="sobrenome" value="{{ old('name') }}" required autofocus>
+
+                                @if ($errors->has('name'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
@@ -58,6 +72,14 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="deficiente" class="col-md-4 col-form-label text-md-right">{{ __('Deficiente?') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="deficiente" type="radio" class="form-control" name="deficiente" value="1">
+                                <input id="deficiente" type="radio" class="form-control" name="deficiente" value="2">
                             </div>
                         </div>
 
