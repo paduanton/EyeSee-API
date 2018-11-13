@@ -18,3 +18,15 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::prefix('api')->group(function () {
+    Route::resources([
+        'task' => 'NoticiaController'
+    ]);
+    Route::prefix('user')->group(function () {
+        Route::get('get', 'UsuarioController@index');
+        Route::put('update', 'UsuarioController@update');
+        Route::delete('delete', 'UsuarioController@destroy');
+        Route::get('logout', 'Auth\LoginController@userLogout')->name('user.logout');
+    });
+});

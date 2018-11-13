@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers;
 
 use App\Usuario;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class UsuarioController extends Controller
 
     public function __construct()
     {
-//        $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     public function index()
