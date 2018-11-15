@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Usuario extends Authenticatable
 {
-    use Notifiable, SoftDeletes;
+    use HasApiTokens, Notifiable, SoftDeletes;
 
 //    const CREATED_AT = 'criado_em';
 //    const UPDATED_AT = 'atualizado_em';

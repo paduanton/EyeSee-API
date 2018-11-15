@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\API;
 
 use App\Usuario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UsuarioController extends Controller
 {
@@ -45,7 +46,18 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $usuario = Usuario::create([
+            'nome' => request('nome'),
+            'sobrenome' => request('sobrenome'),
+            'email' => request('email'),
+            'password' => Hash::make(request('password')),
+            'deficiente' => request('deficiente'),
+        ]);
+
+        return response()->json([
+            'usuario'    => $usuario,
+            'mensagem' => 'Success'
+        ], 200);
     }
 
     /**
