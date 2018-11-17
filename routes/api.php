@@ -31,6 +31,13 @@ Route::middleware('auth:api')->group(function () {
 
 Route::post('register', 'API\RegisterController@register');
 
-Route::middleware('auth:api')->group(function () {
-    //Route::resource('products', 'API\ProductController');
+Route::group([ // carbon is used
+    'namespace' => 'Auth',
+    'middleware' => 'api',
+    'prefix' => 'password'
+], function () {
+    Route::post('resets', 'PasswordResetController@sendResetLinkEmail'); // template web
+    Route::post('create', 'PasswordResetController@create');
+    Route::get('find/{token}', 'PasswordResetController@find');
+    Route::post('reset', 'PasswordResetController@reset');
 });
