@@ -15,7 +15,8 @@ class CriaTabelaIdioma extends Migration
     {
         Schema::create('idioma', function (Blueprint $table) {
             $table->BigIncrements('id');
-            $table->string('descricao');
+            $table->string('nome_lingua');
+            $table->string('pais');
         });
     }
 

@@ -55,10 +55,14 @@ class UsuarioController extends Controller
             unset($data['password']);
         }
 
-        Auth()->user()->update($data);
+        if (Auth()->user()->update($data)) {
+            return response()->json([
+                'mensagem' => 'Dados atualizados com sucesso',
+            ], 200);
+        }
 
         return response()->json([
-            'mensagem' => 'Atualizado com sucesso',
+            'mensagem' => 'Não foi possível atualizar os dados',
         ], 200);
     }
 
