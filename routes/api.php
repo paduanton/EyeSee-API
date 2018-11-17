@@ -13,12 +13,21 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:api')->group(function () {
+    Route::prefix('user')->group(function () {
+
+        Route::get('/', function (Request $request) {
+            return $request->user();
+        });
+        Route::put('/', 'API\UsuarioController@update');
+
+        Route::get('blind/all', 'API\UsuarioController@get_blind');
+        Route::get('noblind/all', 'API\UsuarioController@get_noblind');
+    });
 });
 
 Route::post('register', 'API\RegisterController@register');
 
-Route::middleware('auth:api')->group( function () {
-    Route::resource('products', 'API\ProductController');
+Route::middleware('auth:api')->group(function () {
+    //Route::resource('products', 'API\ProductController');
 });

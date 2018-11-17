@@ -2,84 +2,39 @@
 
 namespace App\Http\Controllers\API;
 
+use Illuminate\Support\Facades\DB;
 use App\Usuario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:api');
     }
 
-    public function index()
+    public function get_blind()
     {
-        $usuario = Auth()->user();
+        $users = DB::table('usuario')->where('deficiente', '=', 1)->count();
+
         return response()->json([
-            'usuario' => $usuario,
+            'mensagem' => 'Usuário cegos',
+            'usuarios' => $users
         ], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function get_noblind()
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $usuario = Usuario::create([
-            'nome' => request('nome'),
-            'sobrenome' => request('sobrenome'),
-            'email' => request('email'),
-            'password' => Hash::make(request('password')),
-            'deficiente' => request('deficiente'),
-        ]);
+        $users = DB::table('usuario')->where('deficiente', '=', 0)->count();
 
         return response()->json([
-            'usuario'    => $usuario,
-            'mensagem' => 'Success'
+            'mensagem' => 'Usuário não cegos',
+            'usuarios' => $users
         ], 200);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Usuario $usuario
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Usuario $usuario)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Usuario $usuario
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Usuario $usuario)
-    {
-        //
     }
 
     /**
@@ -92,26 +47,17 @@ class UsuarioController extends Controller
     public function update(Request $request, Usuario $usuario)
     {
         $data = $request->all();
-
         if ($data['password'] != null) {
             $data['password'] = bcrypt($data['password']);
         } else {
             unset($data['password']);
         }
 
-        $update = Auth()->user()->update($data);
+        Auth()->user()->update($data);
+        
         return response()->json([
-            'mensagem' => 'Usuário atualizado com sucesso'
+            'message' => 'Atualizado com sucesso',
         ], 200);
-
-//        if ($update) {
-//            return response()->json([
-//                'mensagem' => 'Usuário atualizado com sucesso'
-//            ], 200);
-//        }
-//        return response()->json([
-//            'menssagem' => 'Erro ao atualizar'
-//        ], 500);
     }
 
     /**
@@ -122,10 +68,6 @@ class UsuarioController extends Controller
      */
     public function destroy(Usuario $usuario)
     {
-        $delete = Auth()->user()->delete();
 
-        return response()->json([
-            'mensagem' => 'Notícia deletada com sucesso'
-        ], 200);
     }
 }

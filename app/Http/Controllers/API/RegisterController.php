@@ -9,7 +9,6 @@
 
 namespace App\Http\Controllers\API;
 
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\BaseController as BaseController;
 use App\Usuario;
@@ -24,6 +23,7 @@ class RegisterController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
+
     public function register(Request $request)
     {
         /*$validator = Validator::make($request->all(), [
@@ -46,6 +46,6 @@ class RegisterController extends BaseController
         $success['nome'] = $user->nome;
 
 
-        return $this->sendResponse($success, 'Usuario register successfully.');
+        return $this->sendResponse($success, 'Usuário registrado com sucesso');
     }
 }
