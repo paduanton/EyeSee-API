@@ -20,6 +20,7 @@ Route::middleware('auth:api')->group(function () {
             return $request->user();
         });
         Route::put('/', 'API\UsuarioController@update');
+        Route::delete('/', 'API\UsuarioController@destroy');
 
         Route::get('logout', 'API\UsuarioController@logout');
 

@@ -68,11 +68,12 @@ class UsuarioController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         $value = $request->bearerToken();
         $token = $request->user()->token()->revoke(); // all devices
 
-        if($token) {
+        if ($token) {
             return response()->json([
                 'mensagem' => 'Deslogado com sucesso',
             ], 200);
@@ -84,6 +85,16 @@ class UsuarioController extends Controller
 
     public function destroy(Usuario $usuario)
     {
+        $delete = Auth()->user()->delete();
+
+        if ($delete) {
+            return response()->json([
+                'mensagem' => 'Usuário deletado com sucesso'
+            ], 200);
+        }
+        return response()->json([
+            'mensagem' => 'Erro na aplicação'
+        ], 200);
 
     }
 }
