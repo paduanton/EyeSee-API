@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Illuminate\Console\Parser;
 use Illuminate\Support\Facades\DB;
 use App\Usuario;
+use App\PasswordReset;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;

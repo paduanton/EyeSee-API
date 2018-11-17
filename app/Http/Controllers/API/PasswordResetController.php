@@ -17,6 +17,7 @@ use App\Usuario;
 use App\PasswordReset;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\DB;
 
 class PasswordResetController extends Controller
 {
@@ -125,6 +126,12 @@ class PasswordResetController extends Controller
         $request->validate([
             'email' => 'required|string|email',
         ]);
+
+        $email = DB::table('usuario')->where('email', '=', $request->email)->exists();
+        if (!$email)
+            return response()->json([
+                'message' => 'Não foi possível achar um usuário com esse endereço de email'
+            ], 404);
 
         // We will send the password reset link to this user. Once we have attempted
         // to send the link, we will examine the response then see the message we
