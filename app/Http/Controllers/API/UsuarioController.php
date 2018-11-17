@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use Illuminate\Console\Parser;
 use Illuminate\Support\Facades\DB;
 use App\Usuario;
 use Illuminate\Http\Request;
@@ -54,9 +55,9 @@ class UsuarioController extends Controller
         }
 
         Auth()->user()->update($data);
-        
+
         return response()->json([
-            'message' => 'Atualizado com sucesso',
+            'mensagem' => 'Atualizado com sucesso',
         ], 200);
     }
 
@@ -66,6 +67,21 @@ class UsuarioController extends Controller
      * @param  \App\Usuario $usuario
      * @return \Illuminate\Http\Response
      */
+
+    public function logout(Request $request) {
+        $value = $request->bearerToken();
+        $token = $request->user()->token()->revoke(); // all devices
+
+        if($token) {
+            return response()->json([
+                'mensagem' => 'Deslogado com sucesso',
+            ], 200);
+        }
+        return response()->json([
+            'mensagem' => 'Não funcionou',
+        ], 200);
+    }
+
     public function destroy(Usuario $usuario)
     {
 

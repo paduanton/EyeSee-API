@@ -21,6 +21,8 @@ Route::middleware('auth:api')->group(function () {
         });
         Route::put('/', 'API\UsuarioController@update');
 
+        Route::get('logout', 'API\UsuarioController@logout');
+
         Route::get('blind/all', 'API\UsuarioController@get_blind');
         Route::get('noblind/all', 'API\UsuarioController@get_noblind');
     });
