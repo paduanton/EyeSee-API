@@ -130,7 +130,7 @@ class PasswordResetController extends Controller
         $email = DB::table('usuario')->where('email', '=', $request->email)->exists();
         if (!$email)
             return response()->json([
-                'message' => 'Não foi possível achar um usuário com esse endereço de email'
+                'mensagem' => 'Não foi possível achar um usuário com esse endereço de email'
             ], 404);
 
         // We will send the password reset link to this user. Once we have attempted
