@@ -22,10 +22,10 @@ class CriaTabelaUsuario extends Migration
             $table->string('password');
             $table->boolean('deficiente')->nullable();
             $table->rememberToken();
-            $table->timestamps();
+//            $table->timestamps();
             $table->softDeletes();
-//            $table->timestamp('criado_em')->useCurrent();
-//            $table->timestamp('atualizado_em')->useCurrent();;
+            $table->timestamp('criado_em')->useCurrent();
+            $table->timestamp('atualizado_em')->useCurrent();;
 //            $table->timestamp('deletado_em');
         });
     }

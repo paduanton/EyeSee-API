@@ -12,8 +12,8 @@ class Usuario extends Authenticatable
 {
     use HasApiTokens, Notifiable, SoftDeletes;
 
-//    const CREATED_AT = 'criado_em';
-//    const UPDATED_AT = 'atualizado_em';
+    const CREATED_AT = 'criado_em';
+    const UPDATED_AT = 'atualizado_em';
 //    const DELETED_AT = 'deletado_em';
 
     /**
