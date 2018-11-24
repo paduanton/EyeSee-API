@@ -20,13 +20,11 @@ class CriaTabelaUsuario extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->boolean('deficiente')->nullable();
+            $table->boolean('deficiente');
             $table->rememberToken();
-//            $table->timestamps();
-            $table->softDeletes();
             $table->timestamp('criado_em')->useCurrent();
-            $table->timestamp('atualizado_em')->useCurrent();;
-//            $table->timestamp('deletado_em');
+            $table->timestamp('atualizado_em')->useCurrent();
+            $table->timestamp('deletado_em')->nullable();
         });
     }
 

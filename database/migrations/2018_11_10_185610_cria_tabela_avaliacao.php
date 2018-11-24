@@ -17,7 +17,8 @@ class CriaTabelaAvaliacao extends Migration
             $table->bigIncrements('id');
             $table->string('descricao');
             $table->tinyInteger('nota');
-            $table->timestamps();
+            $table->timestamp('criado_em')->useCurrent();
+            $table->timestamp('atualizado_em')->useCurrent();
         });
     }
 

@@ -14,7 +14,7 @@ class Usuario extends Authenticatable
 
     const CREATED_AT = 'criado_em';
     const UPDATED_AT = 'atualizado_em';
-//    const DELETED_AT = 'deletado_em';
+    const DELETED_AT = 'deletado_em';
 
     /**
      * The attributes that are mass assignable.
@@ -27,7 +27,7 @@ class Usuario extends Authenticatable
 
     protected $table = 'usuario';
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deletado_em'];
 
     /**
      * The attributes that should be hidden for arrays.
