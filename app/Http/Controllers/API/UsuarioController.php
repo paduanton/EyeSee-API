@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use Illuminate\Console\Parser;
 use Illuminate\Support\Facades\DB;
 use App\Usuario;
-use App\PasswordReset;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -24,7 +23,7 @@ class UsuarioController extends Controller
         $users = DB::table('usuario')->where('deficiente', '=', 1)->count();
 
         return response()->json([
-            'mensagem' => 'Usuário cegos',
+            'mensagem' => 'usuário cegos',
             'usuarios' => $users
         ], 200);
     }
@@ -34,7 +33,7 @@ class UsuarioController extends Controller
         $users = DB::table('usuario')->where('deficiente', '=', 0)->count();
 
         return response()->json([
-            'mensagem' => 'Usuário não cegos',
+            'mensagem' => 'usuários não cegos',
             'usuarios' => $users
         ], 200);
     }
@@ -57,13 +56,13 @@ class UsuarioController extends Controller
 
         if (Auth()->user()->update($data)) {
             return response()->json([
-                'mensagem' => 'Dados atualizados com sucesso',
+                'mensagem' => 'dados atualizados com sucesso',
             ], 200);
         }
 
         return response()->json([
-            'mensagem' => 'Não foi possível atualizar os dados',
-        ], 200);
+            'mensagem' => 'não foi possível concluir a operação',
+        ], 500);
     }
 
     /**
@@ -75,17 +74,16 @@ class UsuarioController extends Controller
 
     public function logout(Request $request)
     {
-        $value = $request->bearerToken();
         $token = $request->user()->token()->revoke(); // all devices
 
         if ($token) {
             return response()->json([
-                'mensagem' => 'Deslogado com sucesso',
+                'mensagem' => 'desconectado com sucesso',
             ], 200);
         }
         return response()->json([
-            'mensagem' => 'Não funcionou',
-        ], 200);
+            'mensagem' => 'não foi possível desconectar',
+        ], 500);
     }
 
     public function destroy(Usuario $usuario)
@@ -94,12 +92,12 @@ class UsuarioController extends Controller
 
         if ($delete) {
             return response()->json([
-                'mensagem' => 'Usuário deletado com sucesso'
+                'mensagem' => 'cadastro deletado com sucesso'
             ], 200);
         }
         return response()->json([
-            'mensagem' => 'Erro na aplicação'
-        ], 200);
+            'mensagem' => 'error 500'
+        ], 500);
 
     }
 }
