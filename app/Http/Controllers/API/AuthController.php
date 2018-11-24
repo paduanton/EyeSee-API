@@ -73,7 +73,8 @@ class AuthController
         $credentials = request(['email', 'password']);
         if (!Auth::attempt($credentials))
             return response()->json([
-                'message' => 'Unauthorized'
+                'error' => 'Unauthorized',
+                'mensagem' => 'Essas credenciais não correspondem aos nossos registros.',
             ], 401);
 
         $user = $request->user();

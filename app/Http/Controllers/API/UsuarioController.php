@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Auth;
 class UsuarioController extends Controller
 {
 
-    public function __construct()
+    public function index()
     {
-        $this->middleware('auth:api');
+        // Auth::user()->nome
     }
 
     public function get_blind()
@@ -23,7 +23,7 @@ class UsuarioController extends Controller
         $users = DB::table('usuario')->where('deficiente', '=', 1)->count();
 
         return response()->json([
-            'mensagem' => 'usuário cegos',
+            'mensagem' => 'usuários cegos',
             'usuarios' => $users
         ], 200);
     }

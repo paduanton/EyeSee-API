@@ -13,30 +13,34 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->group(function () {
-    Route::prefix('user')->group(function () {
 
+Route::post('auth/login', 'API\AuthController@login');
+Route::post('auth/signup', 'API\AuthController@signup');
+
+Route::group([
+    'namespace' => 'Auth',
+    'middleware' => 'api',
+], function () {
+    Route::post('auth/password/reset', 'PasswordResetController@sendResetLinkEmail');
+});
+
+Route::group([
+    'middleware' => 'auth:api',
+    'prefix' => 'auth/in',
+], function () {
+
+    Route::prefix('user')->group(function () {
+        Route::get('logout', 'API\AuthController@logout');
         Route::get('/', function (Request $request) {
             return $request->user();
         });
         Route::put('/', 'API\UsuarioController@update');
         Route::delete('/', 'API\UsuarioController@destroy');
-
-        Route::get('blind/all', 'API\UsuarioController@get_blind');
-        Route::get('noblind/all', 'API\UsuarioController@get_noblind');
     });
 
-    Route::prefix('auth')->group(function () {
-        Route::get('logout', 'API\UsuarioController@logout');
-    });
+//        all other authorized routes
+
 });
 
-Route::post('register', 'API\AuthController@signup');
-Route::post('login', 'API\AuthController@login');
-Route::group([
-    'namespace' => 'Auth',
-    'middleware' => 'api',
-    'prefix' => 'password'
-], function () {
-    Route::post('reset', 'PasswordResetController@sendResetLinkEmail');
-});
+Route::get('user/blind/all', 'API\UsuarioController@get_blind');
+Route::get('user/noblind/all', 'API\UsuarioController@get_noblind');
