@@ -19,20 +19,20 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/', function (Request $request) {
             return $request->user();
         });
-        Route::put('/', 'UsuarioController@update');
-        Route::delete('/', 'UsuarioController@destroy');
+        Route::put('/', 'API\UsuarioController@update');
+        Route::delete('/', 'API\UsuarioController@destroy');
 
-        Route::get('blind/all', 'UsuarioController@get_blind');
-        Route::get('noblind/all', 'UsuarioController@get_noblind');
+        Route::get('blind/all', 'API\UsuarioController@get_blind');
+        Route::get('noblind/all', 'API\UsuarioController@get_noblind');
     });
 
     Route::prefix('auth')->group(function () {
-        Route::get('logout', 'UsuarioController@logout');
+        Route::get('logout', 'API\UsuarioController@logout');
     });
 });
 
-Route::post('register', 'RegisterController@register');
-
+Route::post('register', 'API\AuthController@signup');
+Route::post('login', 'API\AuthController@login');
 Route::group([
     'namespace' => 'Auth',
     'middleware' => 'api',

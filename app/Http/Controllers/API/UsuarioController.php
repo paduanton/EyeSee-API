@@ -71,21 +71,6 @@ class UsuarioController extends Controller
      * @param  \App\Usuario $usuario
      * @return \Illuminate\Http\Response
      */
-
-    public function logout(Request $request)
-    {
-        $token = $request->user()->token()->revoke(); // all devices
-
-        if ($token) {
-            return response()->json([
-                'mensagem' => 'desconectado com sucesso',
-            ], 200);
-        }
-        return response()->json([
-            'mensagem' => 'não foi possível desconectar',
-        ], 500);
-    }
-
     public function destroy(Usuario $usuario)
     {
         $delete = Auth()->user()->delete();
