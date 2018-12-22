@@ -20,7 +20,7 @@ class UsuarioController extends Controller
 
     public function get_blind()
     {
-        $users = DB::table('usuario')->where('deficiente', '=', 1)->count();
+        $users = DB::table('usuario')->where('deficiente', '=', true)->count();
 
         return response()->json([
             'mensagem' => 'usuários cegos',
@@ -30,7 +30,7 @@ class UsuarioController extends Controller
 
     public function get_noblind()
     {
-        $users = DB::table('usuario')->where('deficiente', '=', 0)->count();
+        $users = DB::table('usuario')->where('deficiente', '=', false)->count();
 
         return response()->json([
             'mensagem' => 'usuários não cegos',
@@ -61,7 +61,7 @@ class UsuarioController extends Controller
         }
 
         return response()->json([
-            'mensagem' => 'não foi possível concluir a operação',
+            'mensagem' => 'não foi possível atualizar os dados',
         ], 500);
     }
 
@@ -71,11 +71,12 @@ class UsuarioController extends Controller
      * @param  \App\Usuario $usuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usuario $usuario)
+    public function destroy(Usuario $usuario, Request $request)
     {
+        $logout = $request->user()->token()->revoke();
         $delete = Auth()->user()->delete();
 
-        if ($delete) {
+        if ($delete && $logout) {
             return response()->json([
                 'mensagem' => 'cadastro deletado com sucesso'
             ], 200);
