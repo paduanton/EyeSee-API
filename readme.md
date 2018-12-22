@@ -65,7 +65,7 @@ To login send a POST request to `/api/auth/login` with the data:
 * email
 * password
 
-On success, user information and API token will be returned:
+On success, an API token will be returned with the type of it and its timing to expire:
 ```json
 {
     "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ic4ZDAwNG",
