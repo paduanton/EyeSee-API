@@ -1,4 +1,4 @@
-![](https://i.imgur.com/Ypv4mSz.png)
+![](https://github.com/paduanton/EyeSee-API/blob/master/public/png/eyesee.png?raw=true)
 
 # Overview
 
@@ -7,6 +7,10 @@ and it is built based in PHP with Laravel Framework. This project is the backend
 API only. The frontend is written in React Native and can be found here:
 
 [EyeSee Frontend](https://github.com/nataliaPintos/EyeSee)
+
+
+## Scheme
+![](https://raw.githubusercontent.com/paduanton/EyeSee-API/master/public/png/system.png)
 
 ## Project Setup
 
