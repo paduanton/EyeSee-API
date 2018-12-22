@@ -65,7 +65,7 @@ To login send a POST request to `/api/auth/login` with the data:
 * email
 * password
 
-On success, an API token will be returned with the type of it and its timing to expire:
+On success, an API access token will be returned with the type of it and its timing to expire:
 ```json
 {
     "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6Ic4ZDAwNG",
@@ -89,8 +89,5 @@ To view API documentation, run development server and visit [http://127.0.0.1:80
 ## Links
 
 <!-- - [API Docs](http://127.0.0.1:8000/docs/) -->
-- [Facebook](https://www.facebook.com/TheNewBoston-464114846956315/)
 - [Frontend (GitHub)](https://github.com/buckyroberts/Vataxia-Frontend)
-- [Reddit](https://www.reddit.com/r/Vataxia/)
-- [Slack](https://vataxia.slack.com/)
-- [Support](https://www.patreon.com/thenewboston)
+- [Natália (GitHub)](https://github.com/nataliaPintos)
