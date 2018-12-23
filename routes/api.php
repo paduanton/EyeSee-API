@@ -29,18 +29,19 @@ Route::group([
     'prefix' => 'auth/in',
 ], function () {
 
+    Route::get('logout', 'API\AuthController@logout');
     Route::prefix('user')->group(function () {
-        Route::get('logout', 'API\AuthController@logout');
+
+//        Route::get('/', 'API\UsuarioController@index');
         Route::get('/', function (Request $request) {
             return $request->user();
         });
         Route::put('/', 'API\UsuarioController@update');
         Route::delete('/', 'API\UsuarioController@destroy');
+        Route::get('/blind/all', 'API\UsuarioController@get_blind');
+        Route::get('/noblind/all', 'API\UsuarioController@get_noblind');
     });
 
 //        all other authorized routes
 
 });
-
-Route::get('user/blind/all', 'API\UsuarioController@get_blind');
-Route::get('user/noblind/all', 'API\UsuarioController@get_noblind');

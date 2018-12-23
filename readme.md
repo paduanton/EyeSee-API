@@ -55,11 +55,11 @@ ipconfig
 ## Authentication
 
 To signup, send a POST request to `/api/auth/signup` with the data:
-* nome
-* sobrenome
-* email
-* password
-* deficiente
+* nome      | String 
+* sobrenome | String
+* email     | String (email format)
+* password - String
+* deficiente boolean
 
 To login send a POST request to `/api/auth/login` with the data:
 * email

@@ -16,25 +16,39 @@ class UsuarioController extends Controller
     public function index()
     {
         // Auth::user()->nome
+
+        $user = [
+            'id' => Auth::user()->getAuthIdentifier(),
+            'nome' => Auth::user()->nome,
+            'sobrenome' => Auth::user()->sobrenome,
+            'email' => Auth::user()->email,
+            'deficiente' => Auth::user()->deficiente,
+            'criado_em' => Auth::user()->criado_em,
+            'atualizado_em' => Auth::user()->atualizado_em
+        ];
+
+        return response()->json([
+            'auth_user' => $user
+        ], 200);
     }
 
     public function get_blind()
     {
-        $users = DB::table('usuario')->where('deficiente', '=', true)->count();
+        $count = DB::table('usuario')->where('deficiente', '=', true)->count();
 
         return response()->json([
-            'mensagem' => 'usuários cegos',
-            'usuarios' => $users
+            'mensagem' => 'cegos',
+            'usuarios' => $count
         ], 200);
     }
 
     public function get_noblind()
     {
-        $users = DB::table('usuario')->where('deficiente', '=', false)->count();
+        $count = DB::table('usuario')->where('deficiente', '=', false)->count();
 
         return response()->json([
-            'mensagem' => 'usuários não cegos',
-            'usuarios' => $users
+            'mensagem' => 'não cegos',
+            'usuarios' => $count
         ], 200);
     }
 
