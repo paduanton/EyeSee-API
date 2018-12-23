@@ -12,11 +12,22 @@ API only. The frontend is written in React Native and can be found here:
 ## Scheme
 ![](https://raw.githubusercontent.com/paduanton/EyeSee-API/master/public/png/system.png)
 
+## System requirements
+* PHP >= 7.1.3
+* Laravel: 5.7.*
+* Composer: 1.6.5
+
+
 ## Project Setup
 
 Install required packages:
 ```
 composer install
+```
+
+Create unique key for the application:
+```
+php artisan key:generate
 ```
 
 #### Database:
