@@ -2,8 +2,8 @@
 
 # Overview
 
-EyeSee is an open source mobile app developed in partnership with [Natália](http://github.com/nataliaPintos/)
-and it is built based in PHP with Laravel Framework. This project is the backend REST
+EyeSee is an open source mobile app developed by [Natália](http://github.com/nataliaPintos/)
+and [Antonio](http://github.com/paduanton/). It is built based in PHP with Laravel Framework. This project is the backend REST
 API only. The frontend is written in React Native and can be found here:
 
 [EyeSee Frontend](https://github.com/nataliaPintos/EyeSee)
@@ -100,5 +100,6 @@ To view API documentation, run development server and visit [http://127.0.0.1:80
 ## Links
 
 <!-- - [API Docs](http://127.0.0.1:8000/docs/) -->
-- [Frontend (GitHub)](https://github.com/buckyroberts/Vataxia-Frontend)
+- [Frontend (GitHub)](https://github.com/nataliaPintos/EyeSee)
 - [Natália (GitHub)](https://github.com/nataliaPintos)
+- [Antonio (GitHub)](https://github.com/paduanton)
